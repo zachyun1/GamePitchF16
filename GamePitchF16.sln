@@ -1,14 +1,23 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{817C1920-30DE-B484-D3CE-7358A972848B}") = "GamePitchF16", "Assembly-CSharp.csproj", "{6425D029-C6EC-C299-E368-6C1EBACFCE06}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6425D029-C6EC-C299-E368-6C1EBACFCE06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6425D029-C6EC-C299-E368-6C1EBACFCE06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6425D029-C6EC-C299-E368-6C1EBACFCE06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6425D029-C6EC-C299-E368-6C1EBACFCE06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal
