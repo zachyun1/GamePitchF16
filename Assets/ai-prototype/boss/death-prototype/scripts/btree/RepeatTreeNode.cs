@@ -23,7 +23,7 @@ namespace BTree
             base.Tick(tree);
         }
 
-        public override void Execute(BehaviourTree tree)
+        protected override void Execute(BehaviourTree tree)
         {
             foreach (BehaviourTree.Node child in node.GetChildren())
             {

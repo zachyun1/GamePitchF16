@@ -1,34 +1,38 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace BTree
 {
-	public class SelectorTreeNode : BehaviourTreeNode<bool>
-	{
-		private Func<bool> condition;
-		private BehaviourTree.Node actionIfTrue;
-		private BehaviourTree.Node actionIfFalse;
+    class SelectorTreeNode : BehaviourTree.Node
+    {
+        private BehaviourTree.Node[] children;
 
-        public SelectorTreeNode (Func<bool> condition, BehaviourTree.Node actionIfTrue, BehaviourTree.Node actionIfFalse)
-		{
-			this.condition = condition;
-			this.actionIfTrue = actionIfTrue;
-			this.actionIfFalse = actionIfFalse;
+        public SelectorTreeNode(BehaviourTree.Node[] children) {
+            this.children = children;
         }
 
-		public override void Execute(BehaviourTree tree) {
-            Result = condition.Invoke();
-            BehaviourTree.Node action = Result ? actionIfTrue : actionIfFalse;
-            action.Tick(tree);
-            if (action.IsComplete())
+        protected override void Execute(BehaviourTree tree)
+        {
+            foreach(BehaviourTree.Node child in children)
             {
-                State = BehaviourTree.State.SUCCESS;
+                child.Tick(tree);
+                if (child.State == BehaviourTree.State.SUCCESS)
+                {
+                    State = child.State;
+                    return;
+                } else if (!child.IsComplete())
+                {
+                    return;
+                }
             }
-		}
+            State = BehaviourTree.State.FAILURE;
+        }
 
         public override BehaviourTree.Node[] GetChildren()
         {
-            return new BehaviourTree.Node[] { Result ? actionIfTrue : actionIfFalse };
+            return children;
         }
     }
 }
-

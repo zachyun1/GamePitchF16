@@ -55,7 +55,7 @@ namespace BTree
                 }
             }
             
-            public abstract void Execute(BehaviourTree tree);
+            protected abstract void Execute(BehaviourTree tree);
 
             public abstract Node[] GetChildren();
         }

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 39cf19726f5b6db4ba47d0bba970744c
-timeCreated: 1478882614
+timeCreated: 1479008439
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -27,6 +27,11 @@ TextureImporter:
     21300040: Mobile - Demon Hunter Legend 2 - Death_24
     21300042: Teleport1
     21300044: Teleport2
+    21300046: Laser1
+    21300048: Laser5
+    21300050: Laser4
+    21300052: Laser3
+    21300054: Laser2
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -136,7 +141,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 450
-        y: 815
+        y: 814
         width: 67
         height: 74
       alignment: 0
@@ -217,8 +222,8 @@ TextureImporter:
         y: 327
         width: 165
         height: 136
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.4877003, y: 0.43533662}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -230,8 +235,8 @@ TextureImporter:
         y: 318
         width: 166
         height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.4877744, y: 0.45243526}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -243,8 +248,8 @@ TextureImporter:
         y: 317
         width: 139
         height: 98
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.56813455, y: 0.59664047}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -252,12 +257,12 @@ TextureImporter:
       name: Slash4
       rect:
         serializedVersion: 2
-        x: 499
+        x: 500
         y: 321
         width: 110
         height: 110
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.46310148, y: 0.5307495}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -269,8 +274,8 @@ TextureImporter:
         y: 320
         width: 110
         height: 110
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.46310148, y: 0.5368991}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -282,8 +287,8 @@ TextureImporter:
         y: 173
         width: 128
         height: 118
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.4092952, y: 0.5382634}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -295,8 +300,8 @@ TextureImporter:
         y: 173
         width: 128
         height: 118
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.3941778, y: 0.5382634}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -308,8 +313,8 @@ TextureImporter:
         y: 173
         width: 128
         height: 118
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.44456935, y: 0.5382634}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -321,8 +326,8 @@ TextureImporter:
         y: 176
         width: 112
         height: 130
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.6670118, y: 0.49503842}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -334,8 +339,8 @@ TextureImporter:
         y: 176
         width: 112
         height: 130
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.67853004, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -388,6 +393,71 @@ TextureImporter:
         height: 87
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Laser1
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 105
+        width: 111
+        height: 3
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Laser5
+      rect:
+        serializedVersion: 2
+        x: 621
+        y: 100
+        width: 111
+        height: 14
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Laser4
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 101
+        width: 111
+        height: 12
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Laser3
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 101
+        width: 111
+        height: 11
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Laser2
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 102
+        width: 111
+        height: 9
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

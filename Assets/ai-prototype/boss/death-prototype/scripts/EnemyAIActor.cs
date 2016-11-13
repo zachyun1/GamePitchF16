@@ -11,12 +11,15 @@ using Steer2D;
 [RequireComponent(typeof (Seek))]
 public class EnemyAIActor : MonoBehaviour, Actor {
 
+    public float health = 100;
+
     public float meleeDelay = 0.1f;
     public float meleeTime = 0.1f;
 
     public float rangeDelay = 0.1f;
     public float rangeTime = 0.1f;
     public float rangeParticleHeight = 1f;
+    public GameObject rangeProjectile;
 
 	public float mediumRadius;
 	public float smallRadius;
@@ -42,6 +45,11 @@ public class EnemyAIActor : MonoBehaviour, Actor {
 			target = null;
         }
 	}
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+    }
 
 	public bool IsTargetInRange() {
 		return target != null;
@@ -92,7 +100,7 @@ public class EnemyAIActor : MonoBehaviour, Actor {
         {
             return BehaviourTree.State.SUCCESS;
         }
-        setAnimatorLookAtX(target.transform.position);
+        setLookAtX(target.transform.position);
         return BehaviourTree.State.SUCCESS;
 	}
     
@@ -106,7 +114,7 @@ public class EnemyAIActor : MonoBehaviour, Actor {
         }
         seek.TargetPoint = target.transform.position;
         animator.SetBool("move", true);
-        setAnimatorLookAtX(target.transform.position);
+        setLookAtX(target.transform.position);
         if (IsTargetInMeleeAttackRange())
         {
             seek.TargetPoint = transform.position;
@@ -117,8 +125,15 @@ public class EnemyAIActor : MonoBehaviour, Actor {
     }
 
     public BehaviourTree.State PrepareMeleeAttack(BehaviourTreeNode<float> node) {
+        if (target == null)
+        {
+            animator.SetBool("melee", false);
+            animator.SetBool("prepare", false);
+            return BehaviourTree.State.FAILURE;
+        }
         animator.SetBool("melee", true);
         animator.SetBool("prepare", true);
+        setLookAtX(target.transform.position);
         node.Result += Time.deltaTime;
         if (node.Result > meleeDelay)
         {
@@ -143,14 +158,43 @@ public class EnemyAIActor : MonoBehaviour, Actor {
 
     public BehaviourTree.State PrepareRangeAttack(BehaviourTreeNode<float> node)
     {
-        animator.SetBool("range", true);
-        animator.SetBool("prepare", true);
-        node.Result += Time.deltaTime;
-        if (node.Result > rangeTime)
+        if (target == null)
         {
-            node.Result = 0;
             animator.SetBool("range", false);
             animator.SetBool("prepare", false);
+            return BehaviourTree.State.FAILURE;
+        }
+        animator.SetBool("range", true);
+        animator.SetBool("prepare", true);
+        setLookAtX(target.transform.position);
+        node.Result += Time.deltaTime;
+        if (node.Result > rangeDelay)
+        {
+            node.Result = 0;
+            return BehaviourTree.State.SUCCESS;
+        }
+        return BehaviourTree.State.RUNNING;
+    }
+
+    public BehaviourTree.State RangeAttack(BehaviourTreeNode<Tuple<float, GameObject>> node)
+    {
+        if (node.Result == null)
+        {
+            node.Result = new Tuple<float, GameObject>();
+        }
+        animator.SetBool("range", true);
+        animator.SetBool("prepare", false);
+        node.Result.Val1 += Time.deltaTime;
+        if (node.Result.Val2 == null) {
+            Transform parent = transform.FindChild("ProjectilePivot");
+            node.Result.Val2 = Instantiate(rangeProjectile, parent);
+            node.Result.Val2.transform.position = parent.position;
+        }
+        if (node.Result.Val1 > rangeTime)
+        {
+            Destroy(node.Result.Val2);
+            node.Result.Val1 = 0;
+            node.Result.Val2 = null;
             return BehaviourTree.State.SUCCESS;
         }
         return BehaviourTree.State.RUNNING;
@@ -163,46 +207,64 @@ public class EnemyAIActor : MonoBehaviour, Actor {
 		return BehaviourTree.State.SUCCESS;
 	}
 
-    private void setAnimatorLookAtX(Vector3 target)
+    private float setLookAtX(Vector3 target)
     {
         float lookX = target.x - transform.position.x;
         animator.SetFloat("lookX", lookX > 0 ? 1 : -1);
+        return lookX;
+    }
+
+    private BehaviourTree.Node GetMeleeTree()
+    {
+        return new BinaryTreeNode(
+            IsTargetInMeleeRange,
+            new SequenceTreeNode(new BehaviourTree.Node[] {
+                new ActionTreeNode<System.Object>(Wake),
+                new ActionTreeNode<System.Object>(MoveTowardsTarget),
+                new BinaryTreeNode(
+                    IsTargetInMeleeAttackRange,
+                    new SequenceTreeNode(new BehaviourTree.Node[] {
+                        new ActionTreeNode<float>(PrepareMeleeAttack),
+                        new ActionTreeNode<float>(MeleeAttack)
+                    }),
+                    new ActionTreeNode<System.Object>(WithdrawAttack)
+                )
+            }),
+            new SequenceTreeNode(new BehaviourTree.Node[] {
+                new ActionTreeNode<System.Object>(WithdrawAttack),
+                new ActionTreeNode<System.Object>(Idle),
+                new ActionTreeNode<System.Object>(node => BehaviourTree.State.FAILURE)
+            })
+        );
+    }
+
+    private BehaviourTree.Node GetRangeTree()
+    {
+        return new BinaryTreeNode(
+            IsTargetInHorizontalProjectileRange,
+            new SequenceTreeNode(new BehaviourTree.Node[] {
+                new ActionTreeNode<System.Object>(Wake),
+                new ActionTreeNode<float>(PrepareRangeAttack),
+                new ActionTreeNode<Tuple<float, GameObject>>(RangeAttack),
+                new ActionTreeNode<System.Object>(WithdrawAttack)
+            }),
+            new SequenceTreeNode(new BehaviourTree.Node[] {
+                new ActionTreeNode<System.Object>(WithdrawAttack)
+            })
+        );
     }
 
 	#region Actor implementation
 
 	public BehaviourTree.Node GetBehaviourTree() {
-        return new RepeatTreeNode(new SelectorTreeNode(
+        return new RepeatTreeNode(new BinaryTreeNode(
             IsTargetInRange,
             new SequenceTreeNode(new BehaviourTree.Node[] {
                 new ActionTreeNode<System.Object>(LookAtTarget),
-                new SelectorTreeNode(
-                    IsTargetInHorizontalProjectileRange,
-                    new SequenceTreeNode(new BehaviourTree.Node[] {
-                        new ActionTreeNode<System.Object>(Wake),
-                        new ActionTreeNode<float>(PrepareRangeAttack)
-                    }),
-                    new ActionTreeNode<System.Object>(node => BehaviourTree.State.SUCCESS)
-                ),
-                new SelectorTreeNode(
-                    IsTargetInMeleeRange,
-                    new SequenceTreeNode(new BehaviourTree.Node[] {
-                        new ActionTreeNode<System.Object>(Wake),
-                        new ActionTreeNode<System.Object>(MoveTowardsTarget),
-                        new SelectorTreeNode(
-                            IsTargetInMeleeAttackRange,
-                            new SequenceTreeNode(new BehaviourTree.Node[] {
-                                new ActionTreeNode<float>(PrepareMeleeAttack),
-                                new ActionTreeNode<float>(MeleeAttack)
-                            }),
-                            new ActionTreeNode<System.Object>(WithdrawAttack)
-                        )
-                    }),
-                    new SequenceTreeNode(new BehaviourTree.Node[] {
-                        new ActionTreeNode<System.Object>(WithdrawAttack),
-                        new ActionTreeNode<System.Object>(Idle)
-                    })
-                )
+                new SelectorTreeNode(new BehaviourTree.Node[] {
+                    GetMeleeTree(),
+                    GetRangeTree()
+                })
             }),
             new SequenceTreeNode(new BehaviourTree.Node[]
             {

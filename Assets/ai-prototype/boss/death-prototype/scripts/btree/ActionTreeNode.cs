@@ -11,7 +11,7 @@ namespace BTree
 			this.Action = action;
 		}
 
-		public override void Execute(BehaviourTree tree)
+		protected override void Execute(BehaviourTree tree)
         {
             State = Action.Invoke(this);
 		}

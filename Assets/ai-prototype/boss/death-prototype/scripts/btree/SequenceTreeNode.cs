@@ -14,15 +14,14 @@ namespace BTree
             this.children = children;
         }
 
-        public override void Execute(BehaviourTree tree)
+        protected override void Execute(BehaviourTree tree)
         {
             foreach (BehaviourTree.Node child in children)
             {
                 child.Tick(tree);
-                BehaviourTree.State state = child.State;
-                if (state == BehaviourTree.State.FAILURE)
+                if (child.State == BehaviourTree.State.FAILURE)
                 {
-                    this.State = state;
+                    State = child.State;
                     return;
                 }
                 else if (!child.IsComplete())
