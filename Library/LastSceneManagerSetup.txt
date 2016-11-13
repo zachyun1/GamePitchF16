@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Standard Assets/CustomAssets/Saves/save02.unity
+- path: Assets/2DSave01.unity
   isLoaded: 1
   isActive: 1
