@@ -8,22 +8,21 @@ namespace BTree
 		private BehaviourTree.Node actionIfTrue;
 		private BehaviourTree.Node actionIfFalse;
 
-		public SelectorTreeNode (Func<bool> condition, BehaviourTree.Node actionIfTrue, BehaviourTree.Node actionIfFalse)
+        public SelectorTreeNode (Func<bool> condition, BehaviourTree.Node actionIfTrue, BehaviourTree.Node actionIfFalse)
 		{
 			this.condition = condition;
 			this.actionIfTrue = actionIfTrue;
 			this.actionIfFalse = actionIfFalse;
-		}
+        }
 
-		public override BehaviourTree.State Execute(BehaviourTree tree) {
+		public override void Execute(BehaviourTree tree) {
             Result = condition.Invoke();
-            if (Result) {
-                state = actionIfTrue.Tick(tree);
-            } else
+            BehaviourTree.Node action = Result ? actionIfTrue : actionIfFalse;
+            action.Tick(tree);
+            if (action.IsComplete())
             {
-                state = actionIfFalse.Tick(tree);
+                State = BehaviourTree.State.SUCCESS;
             }
-            return state;
 		}
 
         public override BehaviourTree.Node[] GetChildren()

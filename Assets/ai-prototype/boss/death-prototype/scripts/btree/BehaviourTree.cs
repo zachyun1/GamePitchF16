@@ -17,70 +17,95 @@ namespace BTree
 
         public abstract class Node
         {
-            protected State state;
+            public State State { set; get; }
 
-            public State GetState()
-            {
-                return state;
-            }
+            private int executionCount = 0;
+            private int executionLimit = 1;
 
             public bool IsComplete()
             {
-                return state != State.RUNNING && state != State.WAITING;
+                return State == State.SUCCESS || State == State.FAILURE;
             }
 
-            public State Tick(BehaviourTree tree)
+            public virtual void Tick(BehaviourTree tree)
             {
-                this.state = State.WAITING;
-                tree.Nodes.Push(this);
-                State state = Execute(tree);
+                if (executionCount == executionLimit)
+                {
+                    return;
+                }
+                if (State != State.RUNNING)
+                {
+                    State = State.WAITING;
+                }
+                tree.Queue(this);
+                Execute(tree);
                 if (IsComplete())
                 {
-                    tree.Nodes.Pop();
+                    executionCount++;
+                    tree.RemoveQueue();
                 }
-                return state;
+            }
+
+            protected void setExecutionCount(Node node, int count)
+            {
+                node.executionCount = count;
+                foreach (Node child in node.GetChildren())
+                {
+                    setExecutionCount(child, 0);
+                }
             }
             
-            public abstract State Execute(BehaviourTree tree);
+            public abstract void Execute(BehaviourTree tree);
 
             public abstract Node[] GetChildren();
         }
 
-        public Node rootNode;
+        private Node rootNode;
+        private Stack<Node> NodeQueue = new Stack<Node>();
 
-        public Stack<Node> Nodes = new Stack<Node>();
-
-		public BehaviourTree (Node rootNode, GameObject actor)
+        public BehaviourTree (Node rootNode, GameObject actor)
 		{
 			this.rootNode = rootNode;
 		}
 
 		public void Tick()
         {
-			Node current = GetCurrentNode(rootNode);
+            Node current = GetCurrentNode(rootNode);
             current.Tick(this);
-		}
+        }
+
+        public void Queue(Node node)
+        {
+            NodeQueue.Push(node);
+        }
+
+        public Node RemoveQueue()
+        {
+            Node node = NodeQueue.Pop();
+            return node;
+        }
 
         private Node GetCurrentNode(Node node)
         {
-            if (Nodes.Count == 0) {
-                return rootNode;
-            }
-            node = Nodes.Pop();
-            if (node.GetChildren().Length > 0)
+            while(NodeQueue.Count > 0)
             {
-                foreach (Node child in node.GetChildren())
+                node = RemoveQueue();
+                if (node.GetChildren().Length > 0)
                 {
-                    if (!child.IsComplete())
+                    foreach (Node child in node.GetChildren())
                     {
-                        return child;
+                        if (!child.IsComplete())
+                        {
+                            return child;
+                        }
                     }
                 }
-            } else if (!node.IsComplete())
-            {
-                return node;
+                else if (!node.IsComplete())
+                {
+                    return node;
+                }
             }
-            return GetCurrentNode(node);
+            return rootNode;
         }
 	}
 }

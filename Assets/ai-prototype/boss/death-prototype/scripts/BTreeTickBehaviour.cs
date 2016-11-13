@@ -14,6 +14,6 @@ public class BTreeTickBehaviour : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		btree.Tick();
+        btree.Tick();
 	}
 }

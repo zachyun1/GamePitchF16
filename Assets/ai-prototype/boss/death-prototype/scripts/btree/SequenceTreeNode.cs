@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BTree
 {
-    public class SequenceTreeNode : BehaviourTreeNode<Object>
+    public class SequenceTreeNode : BehaviourTree.Node
     {
         private BehaviourTree.Node[] children;
 
@@ -14,18 +14,23 @@ namespace BTree
             this.children = children;
         }
 
-        public override BehaviourTree.State Execute(BehaviourTree tree)
+        public override void Execute(BehaviourTree tree)
         {
-            state = BehaviourTree.State.SUCCESS;
             foreach (BehaviourTree.Node child in children)
             {
-                state = child.Tick(tree);
-                if (state != BehaviourTree.State.SUCCESS)
+                child.Tick(tree);
+                BehaviourTree.State state = child.State;
+                if (state == BehaviourTree.State.FAILURE)
                 {
-                    return state;
+                    this.State = state;
+                    return;
+                }
+                else if (!child.IsComplete())
+                {
+                    return;
                 }
             }
-            return state;
+            State = BehaviourTree.State.SUCCESS;
         }
 
         public override BehaviourTree.Node[] GetChildren()

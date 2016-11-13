@@ -14,6 +14,10 @@ public class EnemyAIActor : MonoBehaviour, Actor {
     public float meleeDelay = 0.1f;
     public float meleeTime = 0.1f;
 
+    public float rangeDelay = 0.1f;
+    public float rangeTime = 0.1f;
+    public float rangeParticleHeight = 1f;
+
 	public float mediumRadius;
 	public float smallRadius;
 
@@ -30,7 +34,6 @@ public class EnemyAIActor : MonoBehaviour, Actor {
 	void OnTriggerStay2D(Collider2D collider) {
 		if (collider.gameObject.tag == "Player") {
 			target = collider.gameObject;
-            MoveTowardsTarget();
         }
 	}
 
@@ -39,12 +42,6 @@ public class EnemyAIActor : MonoBehaviour, Actor {
 			target = null;
         }
 	}
-
-    public BehaviourTree.State MoveTowardsTarget()
-    {
-        seek.TargetPoint = target.transform.position;
-        return BehaviourTree.State.SUCCESS;
-    }
 
 	public bool IsTargetInRange() {
 		return target != null;
@@ -65,9 +62,22 @@ public class EnemyAIActor : MonoBehaviour, Actor {
 		return false;
 	}
 
+    public bool IsTargetInHorizontalProjectileRange()
+    {
+        if (target == null)
+        {
+            return false;
+        }
+        float y = target.transform.position.y - transform.position.y;
+        float offset = rangeParticleHeight / 2;
+        if ((-offset < y) && (y < offset))
+        {
+            return true;
+        }
+        return false;
+    }
 
 	public BehaviourTree.State Idle(BehaviourTreeNode<System.Object> node) {
-		Debug.Log("I am bored.");
 		animator.SetBool("idle", true);
 		return BehaviourTree.State.SUCCESS;
 	}
@@ -82,12 +92,31 @@ public class EnemyAIActor : MonoBehaviour, Actor {
         {
             return BehaviourTree.State.SUCCESS;
         }
-        float lookX = target.transform.position.x - transform.position.x;
-        animator.SetFloat("lookX", lookX > 0 ? 1 : -1);
-		return BehaviourTree.State.SUCCESS;
+        setAnimatorLookAtX(target.transform.position);
+        return BehaviourTree.State.SUCCESS;
 	}
+    
+    public BehaviourTree.State MoveTowardsTarget(BehaviourTreeNode<System.Object> node)
+    {
+        if (target == null)
+        {
+            seek.TargetPoint = transform.position;
+            animator.SetBool("move", false);
+            return BehaviourTree.State.FAILURE;
+        }
+        seek.TargetPoint = target.transform.position;
+        animator.SetBool("move", true);
+        setAnimatorLookAtX(target.transform.position);
+        if (IsTargetInMeleeAttackRange())
+        {
+            seek.TargetPoint = transform.position;
+            animator.SetBool("move", false);
+            return BehaviourTree.State.SUCCESS;
+        }
+        return BehaviourTree.State.RUNNING;
+    }
 
-	public BehaviourTree.State PrepareMeleeAttack(BehaviourTreeNode<float> node) {
+    public BehaviourTree.State PrepareMeleeAttack(BehaviourTreeNode<float> node) {
         animator.SetBool("melee", true);
         animator.SetBool("prepare", true);
         node.Result += Time.deltaTime;
@@ -103,7 +132,7 @@ public class EnemyAIActor : MonoBehaviour, Actor {
         animator.SetBool("melee", true);
         animator.SetBool("prepare", false);
         node.Result += Time.deltaTime;
-        if (node.Result > meleeDelay)
+        if (node.Result > meleeTime)
         {
             Debug.Log("Muahahaha!");
             node.Result = 0;
@@ -112,28 +141,61 @@ public class EnemyAIActor : MonoBehaviour, Actor {
         return BehaviourTree.State.RUNNING;
 	}
 
+    public BehaviourTree.State PrepareRangeAttack(BehaviourTreeNode<float> node)
+    {
+        animator.SetBool("range", true);
+        animator.SetBool("prepare", true);
+        node.Result += Time.deltaTime;
+        if (node.Result > rangeTime)
+        {
+            node.Result = 0;
+            animator.SetBool("range", false);
+            animator.SetBool("prepare", false);
+            return BehaviourTree.State.SUCCESS;
+        }
+        return BehaviourTree.State.RUNNING;
+    }
+
 	public BehaviourTree.State WithdrawAttack(BehaviourTreeNode<System.Object> node) {
 		animator.SetBool("prepare", false);
 		animator.SetBool("melee", false);
+        animator.SetBool("range", false);
 		return BehaviourTree.State.SUCCESS;
 	}
+
+    private void setAnimatorLookAtX(Vector3 target)
+    {
+        float lookX = target.x - transform.position.x;
+        animator.SetFloat("lookX", lookX > 0 ? 1 : -1);
+    }
 
 	#region Actor implementation
 
 	public BehaviourTree.Node GetBehaviourTree() {
-        return new SelectorTreeNode(
+        return new RepeatTreeNode(new SelectorTreeNode(
             IsTargetInRange,
             new SequenceTreeNode(new BehaviourTree.Node[] {
                 new ActionTreeNode<System.Object>(LookAtTarget),
                 new SelectorTreeNode(
+                    IsTargetInHorizontalProjectileRange,
+                    new SequenceTreeNode(new BehaviourTree.Node[] {
+                        new ActionTreeNode<System.Object>(Wake),
+                        new ActionTreeNode<float>(PrepareRangeAttack)
+                    }),
+                    new ActionTreeNode<System.Object>(node => BehaviourTree.State.SUCCESS)
+                ),
+                new SelectorTreeNode(
                     IsTargetInMeleeRange,
                     new SequenceTreeNode(new BehaviourTree.Node[] {
                         new ActionTreeNode<System.Object>(Wake),
-                        new ActionTreeNode<float>(PrepareMeleeAttack),
+                        new ActionTreeNode<System.Object>(MoveTowardsTarget),
                         new SelectorTreeNode(
                             IsTargetInMeleeAttackRange,
-                            new ActionTreeNode<float>(MeleeAttack),
-                            new ActionTreeNode<float>(PrepareMeleeAttack)
+                            new SequenceTreeNode(new BehaviourTree.Node[] {
+                                new ActionTreeNode<float>(PrepareMeleeAttack),
+                                new ActionTreeNode<float>(MeleeAttack)
+                            }),
+                            new ActionTreeNode<System.Object>(WithdrawAttack)
                         )
                     }),
                     new SequenceTreeNode(new BehaviourTree.Node[] {
@@ -147,7 +209,7 @@ public class EnemyAIActor : MonoBehaviour, Actor {
                 new ActionTreeNode<System.Object>(WithdrawAttack),
                 new ActionTreeNode<System.Object>(Idle)
             })
-        );
+        ));
 	}
 
 	#endregion
