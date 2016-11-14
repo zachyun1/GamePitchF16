@@ -5,6 +5,7 @@ using UnityEngine;
 public class ProjectileFire2D : MonoBehaviour
 {
 
+    public int numberOfProjectiles;
     public GameObject prefab;
     public GameObject target;
     public GameObject fireFrom;
@@ -31,17 +32,21 @@ public class ProjectileFire2D : MonoBehaviour
         else
         {
             //Instantiate the projectile at the location of the given 'fireFrom' object
-            GameObject projectile = Instantiate(prefab) as GameObject;
-            projectile.transform.position = fireFrom.transform.position;
+            Vector2 destination = target.transform.position;
+            Vector2 center = fireFrom.transform.position;
+            Quaternion rot = Quaternion.FromToRotation(Vector2.left, destination - center);
+
+            GameObject projectile = Instantiate(prefab, center, rot) as GameObject;
+            //projectile.transform.position = fireFrom.transform.position;
+
 
             //Get the rigid body and apply a force towards the target with given velocity
             Rigidbody2D rigidbody = projectile.GetComponent<Rigidbody2D>();
-            rigidbody.velocity = (target.transform.position - transform.position).normalized * projectileVelocity;
+            rigidbody.velocity = (destination - center).normalized * projectileVelocity;
 
 
             //Reset the fire timer
             fireDelay += fireRate;
         }
     }
-
 }
