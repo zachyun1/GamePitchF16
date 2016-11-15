@@ -14,6 +14,7 @@ public class ProjectileNova2D : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+
     }
 
     // Update is called once per frame
@@ -30,17 +31,16 @@ public class ProjectileNova2D : MonoBehaviour {
             Vector2 center = transform.position;
             for (int i = 0; i < numberOfProjectiles; i++)
             {
-
+                //Get the projectile position with the given center
                 Vector2 pos = getProjectilePosition(center, i, 0.5f);
 
-                //Get the rotation each projectile should have
+                //Get the rotation each projectile should have 
                 Quaternion rot = Quaternion.FromToRotation(Vector2.left, pos - center);
 
                 //Instantiate each projectile and give a velocity in each's forward direction
                 GameObject projectile = Instantiate(prefab, pos, rot);
                 Rigidbody2D rigidbody = projectile.GetComponent<Rigidbody2D>();
                 rigidbody.velocity = (pos - center).normalized * projectileVelocity;
-                //rigidbody.velocity = projectile.transform.forward * projectileVelocity;
             }
             //Reset the fire timer
             fireDelay += fireRate;

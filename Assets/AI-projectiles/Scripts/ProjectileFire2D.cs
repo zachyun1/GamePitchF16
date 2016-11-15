@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ProjectileFire2D : MonoBehaviour
 {
-
-    public int numberOfProjectiles;
     public GameObject prefab;
     public GameObject target;
     public GameObject fireFrom;
@@ -16,8 +14,7 @@ public class ProjectileFire2D : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //Load in the projectile to fire
-        //prefab = Resources.Load("RollerBall") as GameObject;
+
     }
 
     // Update is called once per frame
@@ -31,16 +28,16 @@ public class ProjectileFire2D : MonoBehaviour
         //Fire
         else
         {
-            //Instantiate the projectile at the location of the given 'fireFrom' object
+            //Get the quaternion rotation from the shooter to the target
             Vector2 destination = target.transform.position;
             Vector2 center = fireFrom.transform.position;
             Quaternion rot = Quaternion.FromToRotation(Vector2.left, destination - center);
 
+            //Instantiate the projectile with the correct angle and position
             GameObject projectile = Instantiate(prefab, center, rot) as GameObject;
-            //projectile.transform.position = fireFrom.transform.position;
 
 
-            //Get the rigid body and apply a force towards the target with given velocity
+            //Get the rigid body 2D and apply a force towards the target with given velocity
             Rigidbody2D rigidbody = projectile.GetComponent<Rigidbody2D>();
             rigidbody.velocity = (destination - center).normalized * projectileVelocity;
 
