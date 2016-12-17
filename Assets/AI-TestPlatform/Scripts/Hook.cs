@@ -7,6 +7,8 @@ public class Hook : MonoBehaviour {
     public GameObject hook;
     public GameObject target;
     public GameObject self;
+    public float fireDelay;
+    public float fireRate;
 
     GameObject hookGo;
 
@@ -17,7 +19,13 @@ public class Hook : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetMouseButtonDown(0))
+        //Decrement timer until its time to fire
+        if (fireDelay > 1.0)
+        {
+            fireDelay -= Time.deltaTime;
+        }
+        //Fire
+        else
         {
             //Vector2 destination = target.transform.position;
             Vector2 destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -29,6 +37,8 @@ public class Hook : MonoBehaviour {
             hookGo.GetComponent<Rope>().destination = destination;
             hookGo.GetComponent<Rope>().target = target;
             hookGo.GetComponent<Rope>().hookHead = hookGo;
+
+            fireDelay += fireRate;
         }
 	}
 

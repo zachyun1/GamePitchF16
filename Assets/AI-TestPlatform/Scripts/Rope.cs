@@ -15,6 +15,7 @@ public class Rope : MonoBehaviour {
     public GameObject target;
     GameObject[] nodes;
     GameObject player;
+    GameObject misc;
     bool forward = true;
     bool con = false;
     bool noHit = true;
@@ -66,13 +67,14 @@ public class Rope : MonoBehaviour {
             }
             else
             {
+                Destroy(misc);
                 Destroy(hookHead);
             }
            
         }
-        if(player)
+        if(misc)
         {
-            pullPlayer();
+            pull();
         }
 
 	}
@@ -111,15 +113,19 @@ public class Rope : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Connected");
             player = collision.gameObject;
+            noHit = false;
+        }
+        else if(collision.gameObject.tag == "Misc")
+        {
+            misc = collision.gameObject;
             noHit = false;
         }
     }
 
-    void pullPlayer()
+    void pull()
     {
-        player.transform.position = Vector2.MoveTowards(player.transform.position,
+        misc.transform.position = Vector2.MoveTowards(misc.transform.position,
                                             self.transform.position, speed / 2);
     }
 
