@@ -1,0 +1,770 @@
+fileFormatVersion: 2
+guid: 9d967e862f6bf5c408eff47f3f78f0ed
+timeCreated: 1488435406
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: chracters frames_0
+    21300002: chracters frames_1
+    21300004: chracters frames_2
+    21300006: chracters frames_3
+    21300008: chracters frames_4
+    21300010: chracters frames_5
+    21300012: chracters frames_6
+    21300014: chracters frames_7
+    21300016: chracters frames_8
+    21300018: chracters frames_9
+    21300020: chracters frames_10
+    21300022: chracters frames_11
+    21300024: chracters frames_12
+    21300026: chracters frames_13
+    21300028: chracters frames_14
+    21300030: chracters frames_15
+    21300032: chracters frames_16
+    21300034: chracters frames_17
+    21300036: chracters frames_18
+    21300038: chracters frames_19
+    21300040: chracters frames_20
+    21300042: chracters frames_21
+    21300044: chracters frames_22
+    21300046: chracters frames_23
+    21300048: chracters frames_24
+    21300050: chracters frames_25
+    21300052: chracters frames_26
+    21300054: chracters frames_27
+    21300056: chracters frames_28
+    21300058: chracters frames_29
+    21300060: chracters frames_30
+    21300062: chracters frames_31
+    21300064: chracters frames_32
+    21300066: chracters frames_33
+    21300068: chracters frames_34
+    21300070: chracters frames_35
+    21300072: chracters frames_36
+    21300074: chracters frames_37
+    21300076: chracters frames_38
+    21300078: chracters frames_39
+    21300080: chracters frames_40
+    21300082: chracters frames_41
+    21300084: chracters frames_42
+    21300086: chracters frames_43
+    21300088: chracters frames_44
+    21300090: chracters frames_45
+    21300092: chracters frames_46
+    21300094: chracters frames_47
+    21300096: chracters frames_48
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: chracters frames_0
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 2688
+        width: 257
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_1
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 2684
+        width: 256
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_2
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 2684
+        width: 260
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_3
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 2679
+        width: 257
+        height: 649
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_4
+      rect:
+        serializedVersion: 2
+        x: 1322
+        y: 2675
+        width: 257
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_5
+      rect:
+        serializedVersion: 2
+        x: 1637
+        y: 2673
+        width: 256
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_6
+      rect:
+        serializedVersion: 2
+        x: 1937
+        y: 2671
+        width: 257
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_7
+      rect:
+        serializedVersion: 2
+        x: 2231
+        y: 2666
+        width: 257
+        height: 649
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_8
+      rect:
+        serializedVersion: 2
+        x: 3110
+        y: 1724
+        width: 604
+        height: 1509
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_9
+      rect:
+        serializedVersion: 2
+        x: 3419
+        y: 3229
+        width: 14
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_10
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 2979
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_11
+      rect:
+        serializedVersion: 2
+        x: 1318
+        y: 2966
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_12
+      rect:
+        serializedVersion: 2
+        x: 1934
+        y: 2962
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_13
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 2950
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_14
+      rect:
+        serializedVersion: 2
+        x: 1319
+        y: 2937
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_15
+      rect:
+        serializedVersion: 2
+        x: 1934
+        y: 2933
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_16
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 1924
+        width: 257
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_17
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 1924
+        width: 258
+        height: 643
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_18
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 1921
+        width: 260
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_19
+      rect:
+        serializedVersion: 2
+        x: 1011
+        y: 1919
+        width: 273
+        height: 644
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_20
+      rect:
+        serializedVersion: 2
+        x: 1324
+        y: 1913
+        width: 260
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_21
+      rect:
+        serializedVersion: 2
+        x: 1634
+        y: 1915
+        width: 256
+        height: 643
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_22
+      rect:
+        serializedVersion: 2
+        x: 1917
+        y: 1910
+        width: 257
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_23
+      rect:
+        serializedVersion: 2
+        x: 2223
+        y: 1913
+        width: 257
+        height: 643
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_24
+      rect:
+        serializedVersion: 2
+        x: 3107
+        y: 2400
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_25
+      rect:
+        serializedVersion: 2
+        x: 3111
+        y: 2371
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_26
+      rect:
+        serializedVersion: 2
+        x: 3109
+        y: 2331
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_27
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 2215
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_28
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 2213
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_29
+      rect:
+        serializedVersion: 2
+        x: 2173
+        y: 2202
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_30
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 2185
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_31
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 2182
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_32
+      rect:
+        serializedVersion: 2
+        x: 2172
+        y: 2171
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_33
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 1128
+        width: 217
+        height: 644
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_34
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 1122
+        width: 248
+        height: 654
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_35
+      rect:
+        serializedVersion: 2
+        x: 746
+        y: 1115
+        width: 217
+        height: 644
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_36
+      rect:
+        serializedVersion: 2
+        x: 1034
+        y: 1113
+        width: 250
+        height: 655
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_37
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 1117
+        width: 220
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_38
+      rect:
+        serializedVersion: 2
+        x: 1640
+        y: 1111
+        width: 249
+        height: 656
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_39
+      rect:
+        serializedVersion: 2
+        x: 1977
+        y: 1104
+        width: 219
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_40
+      rect:
+        serializedVersion: 2
+        x: 2267
+        y: 1102
+        width: 248
+        height: 657
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_41
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 274
+        width: 220
+        height: 645
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_42
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 265
+        width: 249
+        height: 657
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_43
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 270
+        width: 220
+        height: 645
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_44
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 267
+        width: 250
+        height: 657
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_45
+      rect:
+        serializedVersion: 2
+        x: 1339
+        y: 276
+        width: 220
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_46
+      rect:
+        serializedVersion: 2
+        x: 1638
+        y: 267
+        width: 249
+        height: 656
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_47
+      rect:
+        serializedVersion: 2
+        x: 1963
+        y: 271
+        width: 220
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: chracters frames_48
+      rect:
+        serializedVersion: 2
+        x: 2260
+        y: 269
+        width: 250
+        height: 657
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
